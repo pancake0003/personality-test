@@ -1,11 +1,20 @@
-// results of the test
-'use client';
+'use client'; // Ensure this file runs only on the client
+
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
 export default function Result() {
+    return (
+        <Suspense fallback={<p>Loading result...</p>}>
+            <ResultContent />
+        </Suspense>
+    );
+}
+
+function ResultContent() {
     const searchParams = useSearchParams();
     const planet = searchParams.get('planet') || 'Unknown';
-    
+
     const handleSaveImage = () => {
         alert('Save as Image feature coming soon!');
     };
